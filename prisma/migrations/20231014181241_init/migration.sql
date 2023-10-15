@@ -1,0 +1,27 @@
+-- CreateTable
+CREATE TABLE "Log" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "studentId" INTEGER NOT NULL,
+    "subjectId" INTEGER NOT NULL,
+    "grade" INTEGER NOT NULL,
+    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "Log_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "Log_subjectId_fkey" FOREIGN KEY ("subjectId") REFERENCES "Subject" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Student" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "personalCode" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
+    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Subject" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "subject" TEXT NOT NULL,
+    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

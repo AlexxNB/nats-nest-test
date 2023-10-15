@@ -1,10 +1,18 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { PrismaModule } from '#/common/prisma.module';
+import { NatsModule } from '#/common/nats.module';
+import { LogModule } from '#/log/log.module';
+import { StudentModule } from '#/student/student.module';
+import { SubjectModule } from './subject/subject.module';
 
-@Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
-})
-export class AppModule {}
+const moduleConfig = {
+  imports: [NatsModule, PrismaModule, LogModule, StudentModule, SubjectModule],
+  controllers: [],
+  providers: [],
+};
+
+@Module(moduleConfig)
+export class HttpAppModule {}
+
+@Module(moduleConfig)
+export class NatsAppModule {}
