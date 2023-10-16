@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { NatsModule } from '#/common/nats.module';
-import { PrismaModule } from '#/common/prisma.module';
+import { NatsModule } from '#/common/nats/nats.module';
+import { PrismaModule } from '#/common/prisma/prisma.module';
 import { StudentService } from './student.service';
 
 @Module({

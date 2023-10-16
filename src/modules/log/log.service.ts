@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaService } from '#/common/prisma.service';
-import { StudentService } from '#/student/student.service';
-import { SubjectService } from '#/subject/subject.service';
+import { PrismaService } from '#/common/prisma/prisma.service';
+import { StudentService } from '#/modules/student/student.service';
+import { SubjectService } from '#/modules/subject/subject.service';
 import {
   InputLogEntryDto,
   LogEntryDto,
@@ -67,14 +67,12 @@ export class LogService {
       },
     });
 
-    return logEntries.map((entry) => {
-      return {
-        date: entry.created_at.toISOString(),
-        subject: entry.subject.subject,
-        grade: entry.grade,
-        student: entry.student,
-      };
-    });
+    return logEntries.map((entry) => ({
+      date: entry.created_at.toISOString(),
+      subject: entry.subject.subject,
+      grade: entry.grade,
+      student: entry.student,
+    }));
   }
 
   async getStatistic(

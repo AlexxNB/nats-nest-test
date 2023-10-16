@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { RequestSerializer } from './lib/natsSerializer';
-import { NatsService } from '#/common/nats.service';
+import { NatsService } from './nats.service';
 
 @Module({
   imports: [

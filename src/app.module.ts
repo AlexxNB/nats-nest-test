@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { PrismaModule } from '#/common/prisma.module';
-import { NatsModule } from '#/common/nats.module';
-import { LogModule } from '#/log/log.module';
-import { StudentModule } from '#/student/student.module';
-import { SubjectModule } from './subject/subject.module';
+import { PrismaModule } from '#/common/prisma/prisma.module';
+import { NatsModule } from '#/common/nats/nats.module';
+import { LogModule } from '#/modules/log/log.module';
+import { StudentModule } from '#/modules/student/student.module';
+import { SubjectModule } from './modules/subject/subject.module';
 
 const moduleConfig = {
   imports: [NatsModule, PrismaModule, LogModule, StudentModule, SubjectModule],
@@ -12,7 +12,7 @@ const moduleConfig = {
 };
 
 @Module(moduleConfig)
-export class HttpAppModule {}
+export class AppModule {}
 
-@Module(moduleConfig)
-export class NatsAppModule {}
+// @Module(moduleConfig)
+// export class NatsAppModule {}

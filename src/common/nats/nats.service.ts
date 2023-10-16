@@ -6,7 +6,7 @@ export class NatsService {
   constructor(@Inject('NATS_SERVICE') private nats: ClientProxy) {}
 
   /** Send event to the NATS server */
-  async publish(topic: string, data: object) {
+  publish(topic: string, data: object) {
     return new Promise((resolve, reject) => {
       try {
         const publishObservable = this.nats.emit(topic, data);
@@ -21,7 +21,9 @@ export class NatsService {
   }
 
   /** Send request to the NATS server and wait for response */
-  async request<T>(topic: string, data: object): Promise<T> {
+  // вместо передачи генерика - можно создать typed store - https://github.com/smarthead/type-programming
+  // так генерик передавать не нужно будет и избежим случая когда по ошибке не тот генерик передали и автокомплит будет
+  request<T>(topic: string, data: object): Promise<T> {
     return new Promise((resolve, reject) => {
       try {
         const requestObservable = this.nats.send(topic, data);
