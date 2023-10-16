@@ -11,28 +11,30 @@ datasource db {
 }
 
 model Log {
-  id Int @id @default(autoincrement())
-  studentId Int
-  subjectId Int
-  grade Int
+  id         Int      @id @default(autoincrement())
+  studentId  Int      @map("student_id")
+  subjectId  Int
+  grade      Int
   created_at DateTime @default(now())
-  student Student @relation(fields: [studentId], references: [id])
-  subject Subject @relation(fields: [subjectId], references: [id])
+  student    Student  @relation(fields: [studentId], references: [id])
+  subject    Subject  @relation(fields: [subjectId], references: [id])
+
+  @@map("log")
 }
 
 model Student {
-  id Int @id @default(autoincrement())
-  personalCode String 
-  name String 
-  lastName String 
-  created_at DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  logs Log[]
+  id           Int      @id @default(autoincrement())
+  personalCode String
+  name         String
+  lastName     String
+  created_at   DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  logs         Log[]
 }
 
 model Subject {
-  id Int @id @default(autoincrement())
-  subject String 
+  id         Int      @id @default(autoincrement())
+  subject    String
   created_at DateTime @default(now())
-  logs Log[]
+  logs       Log[]
 }

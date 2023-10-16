@@ -1,6 +1,7 @@
-import { StudentDto } from '#/student/dto/student.dto';
+import { StudentDto } from '#/modules/student/dto/student.dto';
 import { IsInt, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class LogEntryDto {
   date: string;
@@ -31,7 +32,9 @@ export class GetStatisticParam {
 }
 
 export class StatisticDto {
+  @ApiProperty({ type: StudentDto })
   student: StudentDto;
+  // api property...
   statistic: {
     subject: string;
     maxGrade?: number;
